@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center; /* Tambahkan baris ini */
+        }
+
+        li {
+            margin-bottom: 20px;
+            display: inline-block; /* Tambahkan baris ini */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Processing</h1>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Choose Image(s):</label>
+        <input type="file" name="file" id="file" multiple accept="image/*">
+
+        <label for="operation">Choose Operation:</label>
+        <select name="operation" id="operation">
+            <option value="brightness">Brightness</option>
+            <option value="smoothing">Smoothing</option>
+            <option value="sharpening">Sharpening</option>
+            <option value="blurring">Blurring</option>
+            <option value="grayscale">Grayscale</option>
+        </select>
+
+        <button type="submit">Upload & Process</button>
+    </form>
+
+    {% if processed_paths %}
+        <h2>Processed Images:</h2>
+        <ul>
+            {% for processed_path in processed_paths %}
+                <li>
+                    <img src="{{ processed_path }}" alt="Processed Image">
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
